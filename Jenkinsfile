@@ -1,7 +1,7 @@
 def server = 'finaltask-daffa@147.139.182.172'
 def directory = 'test/simple-java-maven-app/quickstart-tutorials'
 def branch = 'main'
-def image = 'daffamusyafa/pelayans-frontend:latest'
+def image = 'ghcr.io/jenkins-docs/quickstart-tutorials/jenkinsci-tutorials:simple_controller_'
 
 pipeline {
     agent any
@@ -34,7 +34,6 @@ pipeline {
                 sshagent([env.secret]) {
                     sh """ssh -p 1234 -o StrictHostKeyChecking=no ${server} << EOF
                     cd ${directory}
-                    docker login registry.daffa.studentdumbways.my.id
                     docker build --no-cache -t ${image} .
                     exit
                     EOF"""
